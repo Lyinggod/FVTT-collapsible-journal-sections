@@ -505,6 +505,11 @@ Hooks.on('ready', async() => {
 			//h2,3,4,5,6
 			el.classList.add('cjs-collapsedSect');
 		}
+		indentIt('h2', 'indent-h2');
+indentIt('h3', 'indent-h3');
+indentIt('h4', 'indent-h4');
+indentIt('h5', 'indent-h5');
+indentIt('h6', 'indent-h6');
 	}
 
 	function apply_defaultCollapsedState(el){
@@ -518,6 +523,16 @@ Hooks.on('ready', async() => {
 			$(el).hide();
 		}
 	}
-
+	
+function indentIt(tagName = 'h1', className = 'indent-h1', tags = 'DIV,P') {
+    document.querySelectorAll(tagName).forEach((el) => {
+    t = tags.split(',');
+    let x = el.nextElementSibling;
+    while (t.includes(x.tagName)) {
+        x.className = x.className + ' ' + className;
+      x = x.nextElementSibling;
+    }
+  });
+}
 
 });
